@@ -8,122 +8,48 @@
   </head>
   <body>
     <div class="container">
+      <!-- Floating Hearts Background -->
+      <div class="floating-hearts" id="floatingHearts"></div>
+
+      <!-- Love Messages -->
+      <div class="love-message" id="loveMessage">
+        You mean the world to me 💕
+      </div>
       <div class="photos-section">
         <div class="photo-row row-right">
-          <img
-            src="imgs/1.webp"
-            alt="Our Memory 1"
-          />
-          <img
-            src="imgs/2.webp"
-            alt="Our Memory 2"
-          />
-          <img
-            src="imgs/3.webp"
-            alt="Our Memory 3"
-          />
-          <img
-            src="imgs/4.webp"
-            alt="Our Memory 4"
-          />
-          <img
-            src="imgs/5.webp"
-            alt="Our Memory 5"
-          />
-          <img
-            src="imgs/6.webp"
-            alt="Our Memory 6"
-          />
-          <img
-            src="imgs/7.webp"
-            alt="Our Memory 1"
-          />
-          <img
-            src="imgs/8.webp"
-            alt="Our Memory 2"
-          />
-          <img
-            src="imgs/9.webp"
-            alt="Our Memory 3"
-          />
+          <img src="imgs/1.webp" alt="Our Memory 1" />
+          <img src="imgs/2.webp" alt="Our Memory 2" />
+          <img src="imgs/3.webp" alt="Our Memory 3" />
+          <img src="imgs/4.webp" alt="Our Memory 4" />
+          <img src="imgs/5.webp" alt="Our Memory 5" />
+          <img src="imgs/6.webp" alt="Our Memory 6" />
+          <img src="imgs/7.webp" alt="Our Memory 1" />
+          <img src="imgs/8.webp" alt="Our Memory 2" />
+          <img src="imgs/9.webp" alt="Our Memory 3" />
         </div>
 
         <div class="photo-row row-left">
-          <img
-            src="imgs/10.webp"
-            alt="Our Memory 7"
-          />
-          <img
-            src="imgs/11.webp"
-            alt="Our Memory 8"
-          />
-          <img
-            src="imgs/12.webp"
-            alt="Our Memory 9"
-          />
-          <img
-            src="imgs/13.webp"
-            alt="Our Memory 10"
-          />
-          <img
-            src="imgs/14.webp"
-            alt="Our Memory 11"
-          />
-          <img
-            src="imgs/15.webp"
-            alt="Our Memory 12"
-          />
-          <img
-            src="imgs/16.webp"
-            alt="Our Memory 7"
-          />
-          <img
-            src="imgs/17.webp"
-            alt="Our Memory 8"
-          />
-          <img
-            src="imgs/18.webp"
-            alt="Our Memory 9"
-          />
+          <img src="imgs/10.webp" alt="Our Memory 7" />
+          <img src="imgs/11.webp" alt="Our Memory 8" />
+          <img src="imgs/12.webp" alt="Our Memory 9" />
+          <img src="imgs/13.webp" alt="Our Memory 10" />
+          <img src="imgs/14.webp" alt="Our Memory 11" />
+          <img src="imgs/15.webp" alt="Our Memory 12" />
+          <img src="imgs/16.webp" alt="Our Memory 7" />
+          <img src="imgs/17.webp" alt="Our Memory 8" />
+          <img src="imgs/18.webp" alt="Our Memory 9" />
         </div>
 
         <div class="photo-row row-right">
-          <img
-            src="imgs/10.webp"
-            alt="Our Memory 13"
-          />
-          <img
-            src="imgs/9.webp"
-            alt="Our Memory 14"
-          />
-          <img
-            src="imgs/8.webp"
-            alt="Our Memory 15"
-          />
-          <img
-            src="imgs/7.webp"
-            alt="Our Memory 16"
-          />
-          <img
-            src="imgs/6.webp"
-            alt="Our Memory 17"
-          />
-          <img
-            src="imgs/5.webp"
-            alt="Our Memory 18"
-          />
-          <img
-            src="imgs/4.webp"
-            alt="Our Memory 13"
-          />
-          <img
-            src="imgs/3.webp"
-            alt="Our Memory 14"
-          />
-          <img
-            src="imgs/2.webp"
-            alt="Our Memory 15"
-          />
+          <img src="imgs/10.webp" alt="Our Memory 13" />
+          <img src="imgs/9.webp" alt="Our Memory 14" />
+          <img src="imgs/8.webp" alt="Our Memory 15" />
+          <img src="imgs/7.webp" alt="Our Memory 16" />
+          <img src="imgs/6.webp" alt="Our Memory 17" />
+          <img src="imgs/5.webp" alt="Our Memory 18" />
+          <img src="imgs/4.webp" alt="Our Memory 13" />
+          <img src="imgs/3.webp" alt="Our Memory 14" />
+          <img src="imgs/2.webp" alt="Our Memory 15" />
         </div>
       </div>
 
@@ -139,6 +65,50 @@
       </div>
     </div>
 
+    <!-- Confirmation Modal -->
+    <div class="modal-overlay" id="confirmationModal">
+      <div class="modal-content">
+        <h3>Are you absolutely sure? 🤔</h3>
+        <p>
+          Think carefully about your answer... Are you really sure you want to
+          say no to this heartfelt question? 💭
+        </p>
+        <div class="modal-buttons">
+          <button
+            class="modal-btn modal-btn-cancel"
+            onclick="closeConfirmationModal()"
+          >
+            Wait, let me reconsider 💖
+          </button>
+          <button class="modal-btn modal-btn-confirm" onclick="showError()">
+            Yes, I'm sure
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div class="modal-overlay" id="errorModal">
+      <div class="modal-content error-content">
+        <div class="error-icon">⚠️</div>
+        <h3>Error: Invalid Choice!</h3>
+        <p>
+          System malfunction detected! 🤖<br />
+          Please select "Yes! ✨" to fix this critical error and restore normal
+          operation. 💕
+        </p>
+        <div class="modal-buttons">
+          <button
+            class="modal-btn modal-btn-cancel"
+            onclick="closeErrorModal()"
+          >
+            Fix Error ✨
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Success Modal -->
     <div class="success-overlay" id="successOverlay">
       <div class="success-content">
         <h2>Thank you, I love you 💖</h2>

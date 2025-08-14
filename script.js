@@ -1,21 +1,108 @@
+// Existing code
 const noBtn = document.getElementById("noBtn");
 const container = document.querySelector(".buttons-container");
+const confirmationModal = document.getElementById("confirmationModal");
+const errorModal = document.getElementById("errorModal");
+const successOverlay = document.getElementById("successOverlay");
 
+// Romantic Enhancement Features
+const loveMessages = [
+  "You mean the world to me 💕",
+  "Forever and always 💖",
+  "You're my sunshine ☀️",
+  "My heart belongs to you 💝",
+  "You complete me ✨",
+  "Together we're magic 🌟",
+  "You're my dream come true 💫",
+];
+
+let messageIndex = 0;
+
+// Floating Hearts
+function createFloatingHearts() {
+  const heartsContainer = document.getElementById("floatingHearts");
+
+  for (let i = 0; i < 15; i++) {
+    const heart = document.createElement("div");
+    heart.className = "floating-heart";
+    heart.innerHTML = ["💕", "💖", "💝", "💗", "💓"][
+      Math.floor(Math.random() * 5)
+    ];
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDelay = Math.random() * 12 + "s";
+    heart.style.animationDuration = Math.random() * 8 + 8 + "s";
+    heartsContainer.appendChild(heart);
+  }
+}
+
+// Sparkling Stars
+function createSparkles() {
+  for (let i = 0; i < 50; i++) {
+    const sparkle = document.createElement("div");
+    sparkle.className = "sparkle";
+    sparkle.style.left = Math.random() * 100 + "vw";
+    sparkle.style.top = Math.random() * 100 + "vh";
+    sparkle.style.animationDelay = Math.random() * 4 + "s";
+    document.body.appendChild(sparkle);
+  }
+}
+
+// Rose Petals
+function createRosePetals() {
+  setInterval(() => {
+    const petal = document.createElement("div");
+    petal.className = "rose-petal";
+    petal.style.left = Math.random() * 100 + "vw";
+    petal.style.animationDuration = Math.random() * 10 + 10 + "s";
+    document.body.appendChild(petal);
+
+    setTimeout(() => petal.remove(), 25000);
+  }, 2000);
+}
+
+// Love Messages Rotation
+function rotateLoveMessages() {
+  const messageElement = document.getElementById("loveMessage");
+  setInterval(() => {
+    messageIndex = (messageIndex + 1) % loveMessages.length;
+    messageElement.textContent = loveMessages[messageIndex];
+  }, 8000);
+}
+
+// Cursor Hearts Effect
+function createCursorHeart(e) {
+  const heart = document.createElement("div");
+  heart.className = "cursor-heart";
+  heart.innerHTML = "💕";
+  heart.style.left = e.clientX + "px";
+  heart.style.top = e.clientY + "px";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 2000);
+}
+
+// Initialize romantic features
+window.addEventListener("load", () => {
+  createFloatingHearts();
+  createSparkles();
+  createRosePetals();
+  rotateLoveMessages();
+});
+
+// Add cursor hearts on click
+document.addEventListener("click", createCursorHeart);
+
+// Existing functionality
 function moveNoButton() {
   const containerRect = container.getBoundingClientRect();
   const btnRect = noBtn.getBoundingClientRect();
 
-  // Calculate safe boundaries within the container
   const maxMovement = 60;
-
-  // Generate random position within bounds
   const randomX = (Math.random() - 0.5) * maxMovement;
   const randomY = (Math.random() - 0.5) * maxMovement;
 
-  // Apply transform
   noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
 
-  // Add a little shake effect
   setTimeout(() => {
     noBtn.style.transform += " scale(0.95)";
     setTimeout(() => {
@@ -24,15 +111,31 @@ function moveNoButton() {
   }, 50);
 }
 
-// Move button on hover and touch
 noBtn.addEventListener("mouseenter", moveNoButton);
 noBtn.addEventListener("touchstart", moveNoButton);
 
-// Move button on click attempt
 noBtn.addEventListener("click", (e) => {
   e.preventDefault();
   moveNoButton();
+  setTimeout(() => {
+    confirmationModal.style.display = "flex";
+  }, 300);
 });
+
+function closeConfirmationModal() {
+  confirmationModal.style.display = "none";
+}
+
+function showError() {
+  confirmationModal.style.display = "none";
+  setTimeout(() => {
+    errorModal.style.display = "flex";
+  }, 200);
+}
+
+function closeErrorModal() {
+  errorModal.style.display = "none";
+}
 
 function createConfetti() {
   for (let i = 0; i < 150; i++) {
@@ -53,38 +156,27 @@ function createConfetti() {
 
 function showSuccess() {
   createConfetti();
-  document.getElementById("successOverlay").style.display = "flex";
+  successOverlay.style.display = "flex";
 
-  // Add celebration effects
   document.body.style.animation = "celebrate 0.6s ease-in-out";
   setTimeout(() => {
     document.body.style.animation = "";
   }, 600);
 }
 
-// Add fall animation for confetti
-const style = document.createElement("style");
-style.textContent = `
-            @keyframes fall {
-                0% {
-                    transform: translateY(-20px) rotate(0deg);
-                    opacity: 1;
-                }
-                100% {
-                    transform: translateY(100vh) rotate(360deg);
-                    opacity: 0;
-                }
-            }
-            
-            @keyframes celebrate {
-                0%, 100% { transform: scale(1); }
-                50% { transform: scale(1.02); }
-            }
-        `;
-document.head.appendChild(style);
+confirmationModal.addEventListener("click", (e) => {
+  if (e.target === e.currentTarget) {
+    closeConfirmationModal();
+  }
+});
 
-// Close overlay when clicking outside
-document.getElementById("successOverlay").addEventListener("click", (e) => {
+errorModal.addEventListener("click", (e) => {
+  if (e.target === e.currentTarget) {
+    closeErrorModal();
+  }
+});
+
+successOverlay.addEventListener("click", (e) => {
   if (e.target === e.currentTarget) {
     e.currentTarget.style.display = "none";
   }
