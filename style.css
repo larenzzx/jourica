@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+:root {
+  color-scheme: dark;
+  -webkit-color-scheme: dark;
+}
+
 body {
   font-family: "Crimson Text", "Georgia", serif;
   min-height: 100vh;
@@ -11,12 +16,24 @@ body {
   background: linear-gradient(
     135deg,
     #8b4513 0%,
-    /* Dark Brown */ #a0522d 25%,
-    /* Sienna Brown */ #800020 50%,
-    /* Maroon */ #654321 75%,
-    /* Dark Brown */ #2c1810 100% /* Very Dark Brown */
+    #a0522d 25%,
+    #800020 50%,
+    #654321 75%,
+    #2c1810 100%
+  );
+  background: -webkit-linear-gradient(
+    135deg,
+    #8b4513 0%,
+    #a0522d 25%,
+    #800020 50%,
+    #654321 75%,
+    #2c1810 100%
   );
   position: relative;
+  -webkit-color-correction: sRGB;
+  color-profile: sRGB;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* Animated background elements */
@@ -888,5 +905,77 @@ body::after {
   .btn {
     padding: 16px 35px;
     font-size: 18px;
+  }
+}
+
+@supports (-webkit-appearance: none) {
+  body {
+    background: linear-gradient(
+      135deg,
+      #7a3a10 0%,
+      #8f441f 25%,
+      #6b001a 50%,
+      #5a3a1c 75%,
+      #241509 100%
+    );
+    background: -webkit-linear-gradient(
+      135deg,
+      #7a3a10 0%,
+      #8f441f 25%,
+      #6b001a 50%,
+      #5a3a1c 75%,
+      #241509 100%
+    );
+  }
+
+  body::before {
+    background: radial-gradient(
+        circle at 20% 50%,
+        rgba(220, 220, 190, 0.15) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 80% 20%,
+        rgba(120, 60, 15, 0.25) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 40% 80%,
+        rgba(110, 0, 25, 0.15) 0%,
+        transparent 50%
+      );
+  }
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) and (max-device-width: 1024px) {
+  body {
+    background: linear-gradient(
+      135deg,
+      #6d3209 0%,
+      #7d3b16 25%,
+      #5a0015 50%,
+      #4d3118 75%,
+      #1f1206 100% /* Even darker very dark brown */
+    ) !important;
+    background: -webkit-linear-gradient(
+      135deg,
+      #6d3209 0%,
+      #7d3b16 25%,
+      #5a0015 50%,
+      #4d3118 75%,
+      #1f1206 100%
+    ) !important;
+  }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 2) {
+  .content-section {
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+  }
+
+  .modal-overlay {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
   }
 }

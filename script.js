@@ -1,5 +1,4 @@
 const noBtn = document.getElementById("noBtn");
-const container = document.querySelector(".buttons-container");
 const confirmationModal = document.getElementById("confirmationModal");
 const errorModal = document.getElementById("errorModal");
 const successOverlay = document.getElementById("successOverlay");
@@ -83,30 +82,9 @@ window.addEventListener("load", () => {
 
 document.addEventListener("click", createCursorHeart);
 
-function moveNoButton() {
-  const maxMovement = 60;
-  const randomX = (Math.random() - 0.5) * maxMovement;
-  const randomY = (Math.random() - 0.5) * maxMovement;
-
-  noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
-
-  setTimeout(() => {
-    noBtn.style.transform += " scale(0.95)";
-    setTimeout(() => {
-      noBtn.style.transform = noBtn.style.transform.replace(" scale(0.95)", "");
-    }, 100);
-  }, 50);
-}
-
-noBtn.addEventListener("mouseenter", moveNoButton);
-noBtn.addEventListener("touchstart", moveNoButton);
-
 noBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  moveNoButton();
-  setTimeout(() => {
-    confirmationModal.style.display = "flex";
-  }, 300);
+  confirmationModal.style.display = "flex";
 });
 
 function closeConfirmationModal() {
@@ -151,6 +129,7 @@ function showSuccess() {
   }, 600);
 }
 
+// Modal click-outside-to-close functionality
 confirmationModal.addEventListener("click", (e) => {
   if (e.target === e.currentTarget) {
     closeConfirmationModal();
