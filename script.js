@@ -1,11 +1,9 @@
-// Existing code
 const noBtn = document.getElementById("noBtn");
 const container = document.querySelector(".buttons-container");
 const confirmationModal = document.getElementById("confirmationModal");
 const errorModal = document.getElementById("errorModal");
 const successOverlay = document.getElementById("successOverlay");
 
-// Romantic Enhancement Features
 const loveMessages = [
   "You mean the world to me 💕",
   "Forever and always 💖",
@@ -18,7 +16,6 @@ const loveMessages = [
 
 let messageIndex = 0;
 
-// Floating Hearts
 function createFloatingHearts() {
   const heartsContainer = document.getElementById("floatingHearts");
 
@@ -35,7 +32,6 @@ function createFloatingHearts() {
   }
 }
 
-// Sparkling Stars
 function createSparkles() {
   for (let i = 0; i < 50; i++) {
     const sparkle = document.createElement("div");
@@ -47,7 +43,6 @@ function createSparkles() {
   }
 }
 
-// Rose Petals
 function createRosePetals() {
   setInterval(() => {
     const petal = document.createElement("div");
@@ -60,7 +55,6 @@ function createRosePetals() {
   }, 2000);
 }
 
-// Love Messages Rotation
 function rotateLoveMessages() {
   const messageElement = document.getElementById("loveMessage");
   setInterval(() => {
@@ -69,7 +63,6 @@ function rotateLoveMessages() {
   }, 8000);
 }
 
-// Cursor Hearts Effect
 function createCursorHeart(e) {
   const heart = document.createElement("div");
   heart.className = "cursor-heart";
@@ -81,7 +74,6 @@ function createCursorHeart(e) {
   setTimeout(() => heart.remove(), 2000);
 }
 
-// Initialize romantic features
 window.addEventListener("load", () => {
   createFloatingHearts();
   createSparkles();
@@ -89,14 +81,9 @@ window.addEventListener("load", () => {
   rotateLoveMessages();
 });
 
-// Add cursor hearts on click
 document.addEventListener("click", createCursorHeart);
 
-// Existing functionality
 function moveNoButton() {
-  const containerRect = container.getBoundingClientRect();
-  const btnRect = noBtn.getBoundingClientRect();
-
   const maxMovement = 60;
   const randomX = (Math.random() - 0.5) * maxMovement;
   const randomY = (Math.random() - 0.5) * maxMovement;
